@@ -27,13 +27,13 @@ class UserUpdateRequest extends ApiRequest
         
         return [
             //
-            'name' => 'required',
+            /*'name' => 'required',
             'last_name' => 'required',
             'address' => 'required',
             'phone' => 'required',
             'email' => 'required', 
             'password'=>'required'
-            /*Rule::unique('users', 'email')->ignore($this->route('user')->id),*/
+            Rule::unique('users', 'email')->ignore($this->route('user')->id),*/
         ];
     }
 }
