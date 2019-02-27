@@ -3,10 +3,16 @@
 namespace App\Exceptions;
 
 use Exception;
+use App\Http\Traits\Core\FormatResponse;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
+
+    use FormatResponse;
+
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -46,6 +52,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        
+        if($exception instanceof ModelNotFoundException)
+        {
+            return $this->error('El recurso que solisita no se encuentra',[get_class($exception)], 404);
+        }
+        
         return parent::render($request, $exception);
-    }
+    }    
 }
